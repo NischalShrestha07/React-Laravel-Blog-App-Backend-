@@ -32,6 +32,9 @@ class BlogController extends Controller
                 'message' => 'Blog not Found.',
             ]);
         }
+
+        $blog['date'] = \Carbon\Carbon::parse($blog->created_at)->format(('d M,Y'));
+
         return response()->json([
             'status' => true,
             'data' => $blog,
@@ -44,8 +47,8 @@ class BlogController extends Controller
     {
         // import Validatot type Facades
         $validator = Validator::make($request->all(), [
-            "title" => "required|min:10",
-            "author" => "required|min:3"
+            "title" => "required",
+            "author" => "required"
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -85,10 +88,58 @@ class BlogController extends Controller
     }
 
     //  update blog
-    public function update()
+    public function update($id, Request $request)
     {
 
+        $blog = Blog::find($id);
+        if ($blog == null) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Blog not found',
+            ]);
+        }
+
+        $validator = Validator::make($request->all(), [
+            "title" => "required",
+            "author" => "required"
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Please fix the errors',
+                'errors' => $validator->errors()
+            ]);
+        }
+
+        $blog->title = $request->title;
+        $blog->author = $request->author;
+        $blog->description = $request->description;
+        $blog->shortDesc = $request->shortDesc;
+        $blog->save();
+
+        // Save Image Here
+        $tempImage = TempImage::find($request->image_id);
+        if ($tempImage != null) {
+            // 564544456.jpg  only get the 'jpg' extension
+            $imageExtArray = explode('.', $tempImage->name);
+            $ext = last($imageExtArray);
+            $imageName = time() . '-' . $blog->id . '.' . $ext;
+
+            $blog->image = $imageName;
+            $blog->save();
+
+            $sourcePath = public_path('uploads/temp/' . $tempImage->name);
+            $desPath = public_path('uploads/blogs/' . $tempImage);
+            File::copy($sourcePath, $desPath);//import File using type Facades auto suggestions
+        }
+        return response()->json([
+            'status' => true,
+            'message' => 'Blog updated successfully.',
+            'data' => $blog
+        ]);
+
     }
+
     //  delete blog
     public function destroy()
     {
