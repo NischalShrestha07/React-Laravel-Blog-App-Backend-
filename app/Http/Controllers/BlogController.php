@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-// use Illuminate\Http\Facades\Validator;
-
 class BlogController extends Controller
 {
     // method will return all blogs
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::orderBy("created_at", "DESC")->get();
+        $blogs = Blog::orderBy('created_at', 'DESC');
+
+        if (!empty($request->keyword)) {
+            $blogs = $blogs->where('title', 'like', '%' . $request->keyword . '%');
+        }
+        $blogs = $blogs->get();
         return response()->json([
             'status' => true,
             'data' => $blogs
@@ -146,7 +149,7 @@ class BlogController extends Controller
     //  delete blog
     public function destroy($id)
     {
-        $blog = Blog::find($id)->delete();
+        $blog = Blog::find($id);
         if ($blog == null) {
 
             return response()->json([
@@ -157,8 +160,13 @@ class BlogController extends Controller
         // Delete blog image first
 
         File::delete(public_path('uploads/blogs/' . $blog->image));
-        $blog->delete();
 
+        // Delete blog from DB
+        $blog->delete();
         return response()->json([
+            'status' => true,
+            'message' => 'Blog deleted Successfully.',
+
+        ]);
     }
 }
