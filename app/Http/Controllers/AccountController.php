@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
 {
@@ -12,9 +13,17 @@ class AccountController extends Controller
         return view("account.register");
     }
 
-    public function processRegister()
+    public function processRegister(Request $request)
     {
-
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:5',
+            'password_confirmation' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('account.register')->withInput()->withErrors(($validator));
+        }
     }
 
 }

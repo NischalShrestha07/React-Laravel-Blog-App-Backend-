@@ -40,16 +40,20 @@
                                 <div class="row gy-3 overflow-hidden">
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="name" id="name"
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                                                 placeholder="Name">
                                             <label for="text" class="form-label">Name</label>
+                                            @error('name')
+                                                <p class="invalid-feedback">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="email" id="email"
+                                            <input type="text" class="form-control" name=" email" id="email"
                                                 placeholder="name@example.com">
                                             <label for="text" class="form-label">Email</label>
+
                                         </div>
                                     </div>
                                     <div class="col-12">
