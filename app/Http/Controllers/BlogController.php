@@ -120,6 +120,9 @@ class BlogController extends Controller
         // Save Image Here
         $tempImage = TempImage::find($request->image_id);
         if ($tempImage != null) {
+            // delete old image here
+            File::delete(public_path('uploads/blogs/' . $blog->image));
+
             // 564544456.jpg  only get the 'jpg' extension
             $imageExtArray = explode('.', $tempImage->name);
             $ext = last($imageExtArray);
@@ -141,8 +144,21 @@ class BlogController extends Controller
     }
 
     //  delete blog
-    public function destroy()
+    public function destroy($id)
     {
+        $blog = Blog::find($id)->delete();
+        if ($blog == null) {
 
+            return response()->json([
+                'status' => false,
+                'message' => 'Blog not Found',
+            ]);
+        }
+        // Delete blog image first
+
+        File::delete(public_path('uploads/blogs/' . $blog->image));
+        $blog->delete();
+
+        return response()->json([
     }
 }
