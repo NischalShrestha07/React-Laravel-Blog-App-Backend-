@@ -9,7 +9,12 @@ class AccountController extends Controller
     //method will show register page
     public function register()
     {
-        return view('account.register');
+        return view("account.register");
+    }
+
+    public function processRegister()
+    {
 
     }
+
 }
