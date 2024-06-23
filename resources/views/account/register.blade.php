@@ -4,24 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Book Review App</title>
+    <title>Blog App</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{assert('css/style.css')}}">
 </head>
 
 <body class="bg-light">
-    <!-- <div class="container-fluid shadow-lg header">
+    <div class="container-fluid shadow-lg header">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <h1 class="text-center"><a href="index.html" class="text-center">React & Laravel
+                <h1 class="text-center"><a href="index.html">React & Laravel
                         Blog
                         App</a></h1>
                 <div class="d-flex align-items-center navigation">
                     <a href="login.html" class="text-white">Login</a>
                     <a href="register.html" class="text-white ps-2">Register</a>
-                </div> -->
-    <!-- </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- <div className="bg-dark text-center py-2 shadow-lg">
+        <h1 className='text-white'>React & Laravel Blog App</h1>
     </div> -->
     <section class=" p-3 p-md-4 p-xl-5">
         <div class="container">
@@ -36,7 +39,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="#!">
+                            <form action="{{route('account.processRegister')}}" method="post">
+                                @csrf
                                 <div class="row gy-3 overflow-hidden">
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
@@ -51,10 +55,10 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" value="{{'email'}}"
-                                                class="form-control @error('email') is-invalid @enderror" name=" email"
-                                                id="email" placeholder="name@example.com">
-                                            <label for="text" class="form-label">Email</label>
+                                            <input type="text" value="{{old('email')}}"
+                                                class="form-control @error('email') is-invalid @enderror" name="email"
+                                                id="text" placeholder="name@example.com">
+                                            <label for="email" class="form-label">Email</label>
                                             @error('email')
                                                 <p class="invalid-feedback">{{$message}}</p>
                                             @enderror
@@ -64,7 +68,7 @@
                                         <div class="form-floating mb-3">
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="
-                                                password" id="password" value="" placeholder="Password">
+                                                password" id="password" placeholder="Password">
                                             <label for="password" class="form-label">Password</label>
                                             @error('password')
                                                 <p class="invalid-feedback">{{$message}}</p>
@@ -74,11 +78,11 @@
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
                                             <input type="password"
-                                                class="form-control @error('name') is-invalid @enderror" name="
-                                                confirm_password" id="confirm_password" value=""
-                                                placeholder="Confirm Password">
+                                                class="form-control @error('password') is-invalid @enderror" name="
+                                                password_confirmation" id="password_confirmation" value=""
+                                                placeholder="Password Confirmation">
                                             <label for="password" class="form-label">Confirm Password</label>
-                                            @error('name')
+                                            @error('password_confirmation')
                                                 <p class="invalid-feedback">{{$message}}</p>
                                             @enderror
                                         </div>
