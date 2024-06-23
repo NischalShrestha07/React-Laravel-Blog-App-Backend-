@@ -40,8 +40,9 @@
                                 <div class="row gy-3 overflow-hidden">
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                                name="name" id="name" placeholder="Name">
+                                            <input type="text" value="{{old('name')}}"
+                                                class="form-control @error('name') is-invalid @enderror" name="name"
+                                                id="name" placeholder="Name">
                                             <label for="text" class="form-label">Name</label>
                                             @error('name')
                                                 <p class="invalid-feedback">{{$message}}</p>
@@ -50,11 +51,11 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text"
-                                                class="form-control @error('email') is-invalid @enderror"" name=" email"
+                                            <input type="text" value="{{'email'}}"
+                                                class="form-control @error('email') is-invalid @enderror" name=" email"
                                                 id="email" placeholder="name@example.com">
                                             <label for="text" class="form-label">Email</label>
-                                            @error('name')
+                                            @error('email')
                                                 <p class="invalid-feedback">{{$message}}</p>
                                             @enderror
                                         </div>
@@ -62,10 +63,10 @@
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
                                             <input type="password"
-                                                class="form-control @error('name') is-invalid @enderror"" name="
+                                                class="form-control @error('password') is-invalid @enderror" name="
                                                 password" id="password" value="" placeholder="Password">
                                             <label for="password" class="form-label">Password</label>
-                                            @error('name')
+                                            @error('password')
                                                 <p class="invalid-feedback">{{$message}}</p>
                                             @enderror
                                         </div>
@@ -73,7 +74,7 @@
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
                                             <input type="password"
-                                                class="form-control @error('name') is-invalid @enderror"" name="
+                                                class="form-control @error('name') is-invalid @enderror" name="
                                                 confirm_password" id="confirm_password" value=""
                                                 placeholder="Confirm Password">
                                             <label for="password" class="form-label">Confirm Password</label>
