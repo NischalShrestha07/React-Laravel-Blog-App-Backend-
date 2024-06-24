@@ -35,6 +35,8 @@ class AccountController extends Controller
         $user->email = Hash::make($request->password);
         $user->save();
 
+
+        return redirect()->route('account.login')->with('success', 'You have registered successfully.');
     }
     public function login()
     {
