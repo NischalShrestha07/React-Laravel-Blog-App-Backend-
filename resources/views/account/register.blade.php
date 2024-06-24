@@ -55,7 +55,7 @@
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 value=" {{ old('email') }}" name=" email" id="email"
                                                 placeholder="name@example.com">
-                                            <label for="email" class="form-label">Email</label>
+                                            <label for="text" class="form-label">Email</label>
                                             @error('email')
                                                 <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
