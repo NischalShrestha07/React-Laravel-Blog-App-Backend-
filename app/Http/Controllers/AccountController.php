@@ -32,7 +32,7 @@ class AccountController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->email = Hash::make($request->password);
+        $user->password = Hash::make($request->password);
         $user->save();
 
 

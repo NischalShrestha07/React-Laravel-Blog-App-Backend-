@@ -6,16 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog App</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{assert('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body class="bg-light">
     <div class="container-fluid shadow-lg header">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <h1 class="text-center"><a href="index.html">React & Laravel
-                        Blog
-                        App</a></h1>
+                <h1 class="text-center"><a href="index.html">React & Laravel Blog App</a></h1>
                 <div class="d-flex align-items-center navigation">
                     <a href="login.html" class="text-white">Login</a>
                     <a href="register.html" class="text-white ps-2">Register</a>
@@ -23,10 +21,8 @@
             </div>
         </div>
     </div>
-    <!-- <div className="bg-dark text-center py-2 shadow-lg">
-        <h1 className='text-white'>React & Laravel Blog App</h1>
-    </div> -->
-    <section class=" p-3 p-md-4 p-xl-5">
+
+    <section class="p-3 p-md-4 p-xl-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
@@ -39,51 +35,53 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="{{route('account.processRegister')}}" method="post">
+                            <form action="{{ route('account.processRegister') }}" method="POST">
                                 @csrf
                                 <div class="row gy-3 overflow-hidden">
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" value="{{old('name')}}"
+                                            <input type="text" value="{{ old('name') }}"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
                                                 id="name" placeholder="Name">
-                                            <label for="text" class="form-label">Name</label>
+                                            <label for="name" class="form-label">Name</label>
                                             @error('name')
-                                                <p class="invalid-feedback">{{$message}}</p>
+                                                <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" value="{{old('email')}}"
-                                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                                id="text" placeholder="name@example.com">
+                                            <input type="email"
+                                                class="form-control @error('email') is-invalid @enderror"
+                                                value=" {{ old('email') }}" name=" email" id="email"
+                                                placeholder="name@example.com">
                                             <label for="email" class="form-label">Email</label>
                                             @error('email')
-                                                <p class="invalid-feedback">{{$message}}</p>
+                                                <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
                                             <input type="password"
-                                                class="form-control @error('password') is-invalid @enderror" name="
-                                                password" id="password" placeholder="Password">
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                name="password" id="password" placeholder="Password">
                                             <label for="password" class="form-label">Password</label>
                                             @error('password')
-                                                <p class="invalid-feedback">{{$message}}</p>
+                                                <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
                                             <input type="password"
-                                                class="form-control @error('password') is-invalid @enderror" name="
-                                                password_confirmation" id="password_confirmation" value=""
-                                                placeholder="Password Confirmation">
-                                            <label for="password" class="form-label">Confirm Password</label>
+                                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                name="password_confirmation" id="password_confirmation"
+                                                placeholder="Confirm Password">
+                                            <label for="password_confirmation" class="form-label">Confirm
+                                                Password</label>
                                             @error('password_confirmation')
-                                                <p class="invalid-feedback">{{$message}}</p>
+                                                <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
