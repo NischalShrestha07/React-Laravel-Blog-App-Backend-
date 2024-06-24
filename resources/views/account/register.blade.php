@@ -13,10 +13,12 @@
     <div class="container-fluid shadow-lg header">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <h1 class="text-center"><a href="index.html">React & Laravel Blog App</a></h1>
+                <h1 class="text-center "><a style="color:white;text-decoration:none;font-size:20px;"
+                        href="index.html">React & Laravel
+                        Blog App</a></h1>
                 <div class="d-flex align-items-center navigation">
                     <a href="login.html" class="text-white">Login</a>
-                    <a href="register.html" class="text-white ps-2">Register</a>
+                    <a style="margin-left:15px;" href="register.html" class="text-white ps-2">Register</a>
                 </div>
             </div>
         </div>
