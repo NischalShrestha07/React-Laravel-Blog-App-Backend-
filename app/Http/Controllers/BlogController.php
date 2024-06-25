@@ -69,6 +69,7 @@ class BlogController extends Controller
 
         // Save Image Here
         $tempImage = TempImage::find($request->image_id);
+        dd($tempImage);
         if ($tempImage != null) {
             // 564544456.jpg  only get the 'jpg' extension
             $imageExtArray = explode('.', $tempImage->name);

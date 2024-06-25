@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;// this is imported
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;// this is imported
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;// this is imported
 
 class AccountController extends Controller
 {
     //method will show register page
     public function register()
     {
-        return view("account.register");
+        return view('account.register');
     }
 
     public function processRegister(Request $request)
